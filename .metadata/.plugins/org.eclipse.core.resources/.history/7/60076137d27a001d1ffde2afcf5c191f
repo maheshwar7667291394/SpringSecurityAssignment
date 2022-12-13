@@ -1,0 +1,22 @@
+package com.masai.service;
+
+import org.springframework.stereotype.Service;
+
+import com.masai.exception.EventException;
+import com.masai.model.Event;
+import com.masai.repo.EventDao;
+
+@Service
+public class EventServiceImple implements EventService{
+	
+	public EventDao edao;
+
+	@Override
+	public Event AddEvent(Event event) throws EventException {
+		
+	return 	edao.save(event);
+		
+		
+	}
+
+}

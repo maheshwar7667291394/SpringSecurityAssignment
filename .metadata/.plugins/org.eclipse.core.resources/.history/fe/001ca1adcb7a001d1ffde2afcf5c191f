@@ -1,0 +1,47 @@
+package com.masai.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.stereotype.Service;
+
+import com.masai.exception.UserException;
+import com.masai.model.CurrentuserSesson;
+import com.masai.model.LoginDto;
+import com.masai.model.User;
+import com.masai.repo.CurrentSuserDao;
+import com.masai.repo.UserDao;
+
+@Service
+public class UserserviceImpl implements UserService {
+	@Autowired
+	public UserDao udao;
+	
+	@Autowired
+	public CurrentSuserDao cudao;
+
+	@Override
+	public User registerUser(User user) throws UserException {
+		
+		
+	  Optional<User> ruser=udao.findById(user.getEmail());
+	  if(ruser.isPresent()) {
+		  throw new UserException("user already present by this email");
+	  }
+	  return udao.save(user);
+	}
+
+	@Override
+	public CurrentuserSesson Loginuser(LoginDto loginuser) throws UserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String Logout(String key) throws UserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

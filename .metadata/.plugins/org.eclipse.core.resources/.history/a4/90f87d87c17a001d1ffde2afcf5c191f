@@ -1,0 +1,11 @@
+package com.masai.exception;
+
+import java.time.LocalDate;
+
+public class Myerror {
+	
+	private String message;
+	private String description;
+	private LocalDate date;
+
+}

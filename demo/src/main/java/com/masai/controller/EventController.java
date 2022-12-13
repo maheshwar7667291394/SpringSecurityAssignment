@@ -1,0 +1,53 @@
+package com.masai.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.exception.EventException;
+import com.masai.model.Event;
+import com.masai.service.EventService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+@RequestMapping("/masaiclender")
+public class EventController {
+	
+	@Autowired
+	public EventService eservice;
+	
+	
+	@PostMapping("/event")
+	public ResponseEntity<Event> SaveEvent(@RequestBody Event events) throws EventException{
+		
+		Event  evn=eservice.AddEvent(events);
+		return new ResponseEntity<Event>(evn,HttpStatus.ACCEPTED);
+		
+	}
+	
+	@PutMapping("/event/{id}")
+	public ResponseEntity<Event> UpdateEvent(@RequestBody Event event,@PathVariable Integer id) throws EventException{
+		
+		Event even=eservice.UpdateEvent(event, id);
+		return new ResponseEntity<Event>(even,HttpStatus.OK);
+		
+	}
+	
+	@DeleteMapping("/event/{id}")
+	public ResponseEntity<String> DlateEventById(@PathVariable Integer id) throws EventException{
+		
+		String result=eservice.DeleteEvent(id);
+		return new ResponseEntity<String>(result,HttpStatus.OK);
+		
+	}
+	
+	
+
+}

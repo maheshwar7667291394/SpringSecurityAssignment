@@ -1,0 +1,12 @@
+package com.masai.service;
+
+import java.util.List;
+
+import com.masai.exception.EventException;
+import com.masai.model.Event;
+
+public interface EventService {
+	public Event AddEvent(Event event)throws EventException;
+	
+
+}

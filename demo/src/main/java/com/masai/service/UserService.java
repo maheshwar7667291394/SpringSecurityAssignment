@@ -1,0 +1,20 @@
+package com.masai.service;
+
+import java.util.List;
+
+import com.masai.exception.EventException;
+import com.masai.exception.UserException;
+import com.masai.model.CurrentuserSesson;
+import com.masai.model.Event;
+import com.masai.model.LoginDto;
+import com.masai.model.User;
+
+public interface UserService {
+   public User registerUser(User user)throws UserException;
+   
+   public CurrentuserSesson Loginuser(LoginDto loginuser)throws UserException;
+   
+   public  String Logout(String key) throws UserException;
+   
+   public List<Event> getAllEvent(String type)throws EventException;
+}
